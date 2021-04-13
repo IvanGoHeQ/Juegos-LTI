@@ -1,0 +1,17 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="quiz-instructions">
+  <div class="lti-quiz-student__instructions">
+    <h1 th:text="#{evaluation.instructions}">
+      Instrucciones
+    </h1>
+    <div>
+      <div th:utext="#{evaluation.instructions.p1}">
+        Este test es la evaluación del curso y está formado por 20 preguntas con una respuesta válida que puedes responder en 20 minutos. Sólo tendrás un intento para realizarlo
+      </div>
+      <div th:utext="#{evaluation.instructions.p2}">
+        Estate en un espacio tranquilo y garantiza la conectividad cuando lo realices. ¡Suerte!
+      </div>
+    </div>
+  </div>
+</body>
