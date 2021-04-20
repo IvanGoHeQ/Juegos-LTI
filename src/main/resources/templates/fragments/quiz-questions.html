@@ -1,0 +1,44 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="quiz-questions(questions, answerIds, finishedMode)">
+  <div class="lti-student-quiz-question" th:each="question: ${questions}" th:object="${question}">
+    <div class="lti-student-quiz-question__header" th:attr="data-noanswer-str=#{evaluation.question.no_answer}"
+          th:classappend="${finishedMode and !question.hasSubmissionAnswer(answerIds)} ? 'no-answer' :''">
+      <h2 th:text="#{submission.question(${questionStat.index+1})}">
+        Pregunta 1
+      </h2>
+      <div>
+      <span th:text="*{points}">
+        0.5
+      </span>
+      <span th:text="#{evaluation.points}">
+        pts
+      </span>
+      </div>
+    </div>
+    <div class="lti-student-quiz-question__label">
+      <div class="lti-student-quiz-question__label__info" th:text="#{submission.choose_right}">
+        Selecciona la respuesta correcta
+      </div>
+      <div class="lti-student-quiz-question__label__text" th:text="*{text}">
+        ¿Existen unidades de negocio tipo u obligatorias?
+      </div>
+    </div>
+    <div class="lti-student-quiz-question__answers">
+      <div th:each="answer, answIterator : ${questionStat.current.getAnswers()}">
+        <label th:attr="data-correct-str=#{evaluation.question.correct}, data-incorrect-str=#{evaluation.question.incorrect}"
+               th:class="${finishedMode and #lists.contains(answerIds, answer.answerId) and answer.correct} ? 'correct' :
+              (${finishedMode and #lists.contains(answerIds, answer.answerId) and !answer.correct} ? 'incorrect' : '')">
+          <input type="radio"
+                 th:attr="name=*{'question-'+ questionId}, value=${answer.answerId}, data-question-id=*{questionId}, disabled=${finishedMode}"
+                 th:checked="${#lists.contains(answerIds, answer.answerId)}"
+          />
+          <span th:text="${answer.text}">
+            No, de hecho, no merece la pena perder el tiempo en dicha
+            clasificación.
+          </span>
+        </label>
+      </div>
+    </div>
+  </div>
+</body>
