@@ -91,14 +91,42 @@
 		</form>
 		
 		
-	
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>sModal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" >Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 		
 		 <div wicket:id="modalEditar"></div>
+		 
+		 <button
+  type="button"
+  class="btn btn-primary"
+  data-mdb-toggle="modal"
+  data-mdb-target="#exampleModal"
+>
+  Launch demo modal
+</button>
 		 
 		 
 		 	</div>
 		 </div>
   </div>
 		
+		<script>
+		var myModal = document.getElementById('myModal')
+		var myInput = document.getElementById('myInput')
+
+		myModal.addEventListener('shown.bs.modal', function () {
+		  myInput.focus()
+		})
+		</script>
 	</body>
 </html>
